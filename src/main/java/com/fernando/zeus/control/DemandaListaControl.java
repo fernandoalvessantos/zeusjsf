@@ -31,7 +31,7 @@ public class DemandaListaControl implements Serializable {
     private LoginControl loginControl;
 
     @PostConstruct
-    public void init() throws Exception {
+    public void init()  {
         this.listar();
     }
 

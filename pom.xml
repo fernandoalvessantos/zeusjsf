@@ -76,6 +76,12 @@
             <version>2.26</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>2.7</version>
+        </dependency>
+
     </dependencies>
 
     <build>
