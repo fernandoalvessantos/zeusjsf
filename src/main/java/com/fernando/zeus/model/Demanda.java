@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class Demanda {
+public class Demanda implements Serializable {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Long id;

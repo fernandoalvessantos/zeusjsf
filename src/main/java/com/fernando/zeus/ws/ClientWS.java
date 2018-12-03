@@ -1,19 +1,20 @@
 package com.fernando.zeus.ws;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fernando.zeus.model.Usuario;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.List;
 
 public class ClientWS {
 
    public static final String AUTHORIZATION = "Basic ZmVybmFuZG86MTIzNA==";
+   public static final String URL_LOGIN = "http://localhost:8080/usuarios/login";
+   public static final String URL_DEMANDA = "http://localhost:8080/demandas";
 
    public static List getListaObjeto(String pathConexao, Class clazz){
       ObjectMapper mapper = new ObjectMapper();
@@ -49,6 +50,30 @@ public class ClientWS {
       return null;
    }
 
+   public static HttpURLConnection criaConexao(String urlWebService, String httpMethod){
+      URL url = null;
+      HttpURLConnection connection = null;
+      try {
+         url = new URL(urlWebService);
+         connection = (HttpURLConnection) url.openConnection();
+         connection.setRequestMethod(httpMethod);
+      } catch (MalformedURLException e) {
+         e.printStackTrace();
+      } catch (ProtocolException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+      connection.setRequestProperty("Authorization", ClientWS.AUTHORIZATION);
+      connection.setDoOutput(true);
+      connection.setUseCaches(false);
+      connection.setConnectTimeout(15000);
+      connection.setRequestProperty("Content-Type", "application/json");
+      connection.setRequestProperty("Accept", "application/json");
+      return connection;
+   }
+
+
    public static Object getObjeto(Class tipoObjetoRetorno, String urlWebService, String... parametros) {
       Object objetoRetorno = null;
 	
@@ -76,20 +101,39 @@ public class ClientWS {
       return objetoRetorno;
    }
 
+   public static void salvarObjeto(Object objetoEnvio, Class tipoObjetoRetorno, String urlWebService) {
+      Object objetoRetorno = null;
+      try {
+         String requestJson = toJson(objetoEnvio);
+         HttpURLConnection connection = ClientWS.criaConexao(urlWebService, "POST");
+
+         DataOutputStream stream = new DataOutputStream(connection.getOutputStream());
+         stream.write(requestJson.getBytes("UTF-8"));
+         stream.flush();
+         stream.close();
+         connection.connect();
+         String responseJson = inputStreamToString(connection.getInputStream());
+         connection.disconnect();
+         objetoRetorno = fromJson(responseJson, tipoObjetoRetorno);
+
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+   }
+
    public static Object postObjeto(Object objetoEnvio, Class tipoObjetoRetorno, String urlWebService) {
       Object objetoRetorno = null;
 	
       try {
          String requestJson = toJson(objetoEnvio);
-		
+
          URL url = new URL(urlWebService);
          HttpURLConnection connection = (HttpURLConnection) url.openConnection();
          connection.setRequestMethod("POST");
+         connection.setRequestProperty("Authorization", ClientWS.AUTHORIZATION);
          connection.setDoOutput(true);
          connection.setUseCaches(false);
-	 connection.setConnectTimeout(15000);
-         connection.setRequestProperty("login", "teste");
-         connection.setRequestProperty("senha", "teste");
+	     connection.setConnectTimeout(15000);
          connection.setRequestProperty("Content-Type", "application/json");
          connection.setRequestProperty("Accept", "application/json");
          connection.setRequestProperty("Content-Length", Integer.toString(requestJson.length()));
