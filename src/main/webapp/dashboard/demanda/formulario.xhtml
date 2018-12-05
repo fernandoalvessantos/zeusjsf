@@ -5,45 +5,46 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head/>
-<h:body>
-    <h2>Demanda</h2>
-    <h:form id="formDemanda">
-        <div>
-            <h:messages/>
-        </div>
-        <div>
-            <h:outputLabel value="Código"/>
-            <h:inputText id="codigo"
-                         value="#{demandaControl.demanda.id}"
-                         readonly="true"/>
-        </div>
-        <div>
-            <h:outputLabel value="Nome *" for="nome"/>
-            <h:inputText id="nome"
-                         value="#{demandaControl.demanda.nome}"
-                         required="true"
-                         requiredMessage="O Campo Nome é Obrigatório"/>
-        </div>
-        <div>
-            <h:outputLabel value="Descrição *" for="descr"/>
-            <h:inputTextarea id="descr"
-                             value="#{demandaControl.demanda.descricao}"
+<ui:composition template="/resources/template/template.xhtml">
+    <ui:define name="conteudo">
+        <h2>Demanda</h2>
+        <h:form id="formDemanda">
+            <div>
+                <h:messages/>
+            </div>
+            <div>
+                <h:outputLabel value="Código"/>
+                <h:inputText id="codigo"
+                             value="#{demandaControl.demanda.id}"
+                             readonly="true"/>
+            </div>
+            <div>
+                <h:outputLabel value="Nome *" for="nome"/>
+                <h:inputText id="nome"
+                             value="#{demandaControl.demanda.nome}"
                              required="true"
-                             requiredMessage="O Campo Descrição é obrigatório" />
-        </div>
-        <div>
-            <h:outputLabel value="Data de Início da Demanda"/>
-            <h:inputText value="#{demandaControl.demanda.dataInicio}">
-                <f:convertDateTime pattern="dd/MM/yyyy"/>
-            </h:inputText>
-        </div>
+                             requiredMessage="O Campo Nome é Obrigatório"/>
+            </div>
+            <div>
+                <h:outputLabel value="Descrição *" for="descr"/>
+                <h:inputTextarea id="descr"
+                                 value="#{demandaControl.demanda.descricao}"
+                                 required="true"
+                                 requiredMessage="O Campo Descrição é obrigatório"/>
+            </div>
+            <div>
+                <h:outputLabel value="Data de Início da Demanda"/>
+                <h:inputText value="#{demandaControl.demanda.dataInicio}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                </h:inputText>
+            </div>
 
-        <div>
-            <h:commandButton value="Salvar"
-                             action="#{demandaControl.salvar}"/>
-        </div>
+            <div>
+                <h:commandButton value="Salvar"
+                                 action="#{demandaControl.salvar}"/>
+            </div>
 
-    </h:form>
-</h:body>
+        </h:form>
+    </ui:define>
+</ui:composition>
 </html>

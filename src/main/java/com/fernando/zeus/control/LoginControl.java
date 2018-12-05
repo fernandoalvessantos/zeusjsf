@@ -7,6 +7,7 @@ import com.fernando.zeus.ws.ClientUtil;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,6 +17,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.io.Serializable;
 
 @Named
@@ -58,9 +60,9 @@ public class LoginControl implements Serializable {
         return "/dashboard/index.xhtml?faces-redirect=true";
     }
 
-    public String logOut() {
+    public String logOut() throws IOException {
         usuario = null;
-        return "/index.xhtml";
+        return "/login?faces-redirect=true";
     }
 
     public Login getLogin() {

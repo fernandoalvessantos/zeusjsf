@@ -4,47 +4,48 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head/>
-<h:body>
-    <h:form id="formPesquisa">
-        <div>
-            <h:outputLabel value="Código" for="cdDemanda"/>
-            <h:inputText id="cdDemanda" value="#{demandaListaControl.demanda.id}"/>
-        </div>
-        <div>
-            <h:outputLabel value="Nome" for="nmDemanda"/>
-            <h:inputText id="nmDemanda" value="#{demandaListaControl.demanda.nome}"/>
-        </div>
-        <div>
-            <h:outputLabel value="Descrição" for="descDemanda"/>
-            <h:inputText id="descDemanda" value="#{demandaListaControl.demanda.descricao}"/>
-        </div>
-        <div>
-            <h:commandButton value="Pesquisar" action="#{demandaListaControl.pesquisar}" />
-        </div>
-    </h:form>
-    <h:form id="formLista">
-        <div>
-            <h:messages/>
-        </div>
-        <div>
-            <h:dataTable id="tableDemandas" value="#{demandaListaControl.lista}" var="d">
-                <h:column>
-                    <h:outputText value="#{d.id}"/>
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{d.nome}"/>
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{d.dataCadastro}">
-                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                    </h:outputText>
-                </h:column>
-                <h:column>
-                    <h:commandButton value="Deletar" action="#{demandaListaControl.deletar(d.id)}"/>
-                </h:column>
-            </h:dataTable>
-        </div>
-    </h:form>
-</h:body>
+<ui:composition template="/resources/template/template.xhtml">
+    <ui:define name="conteudo">
+        <h:form id="formPesquisa">
+            <div>
+                <h:outputLabel value="Código" for="cdDemanda"/>
+                <h:inputText id="cdDemanda" value="#{demandaListaControl.demanda.id}"/>
+            </div>
+            <div>
+                <h:outputLabel value="Nome" for="nmDemanda"/>
+                <h:inputText id="nmDemanda" value="#{demandaListaControl.demanda.nome}"/>
+            </div>
+            <div>
+                <h:outputLabel value="Descrição" for="descDemanda"/>
+                <h:inputText id="descDemanda" value="#{demandaListaControl.demanda.descricao}"/>
+            </div>
+            <div>
+                <h:commandButton value="Pesquisar" action="#{demandaListaControl.pesquisar}"/>
+            </div>
+        </h:form>
+        <h:form id="formLista">
+            <div>
+                <h:messages/>
+            </div>
+            <div>
+                <h:dataTable id="tableDemandas" value="#{demandaListaControl.lista}" var="d">
+                    <h:column>
+                        <h:outputText value="#{d.id}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{d.nome}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{d.dataCadastro}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="Deletar" action="#{demandaListaControl.deletar(d.id)}"/>
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
 </html>
