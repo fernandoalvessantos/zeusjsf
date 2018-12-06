@@ -94,6 +94,9 @@
                                 </h:outputText>
                             </h:column>
                             <h:column>
+                                <h:commandButton action="/dashboard/demanda/formulario?faces-redirect=true">
+                                    <f:param name="id" value="#{d.id}" />
+                                </h:commandButton>
                                 <h:commandButton value="Deletar"
                                                  styleClass="btn btn-default"
                                                  alt="Deletar"

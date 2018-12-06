@@ -30,8 +30,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <h:outputLabel value="Código" for="codigo" styleClass="col-lg-1 control-label"/>
-                        <div class="col-lg-5">
+                        <h:outputLabel value="Código" for="codigo" styleClass="col-md-2 control-label"/>
+                        <div class="col-md-6">
                             <h:inputText id="codigo"
                                          styleClass="form-control"
                                          placeholder="Id"
@@ -40,20 +40,20 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <h:outputLabel value="Nome *" for="nome" styleClass="col-lg-1 control-label"/>
-                        <div class="col-lg-5">
-                        <h:inputText id="nome"
-                                     placeholder="Nome"
-                                     styleClass="form-control"
-                                     value="#{demandaControl.demanda.nome}"
-                                     required="true"
-                                     requiredMessage="O Campo Nome é Obrigatório"/>
+                        <h:outputLabel value="Nome *" for="nome" styleClass="col-md-2 control-label"/>
+                        <div class="col-md-6">
+                            <h:inputText id="nome"
+                                         placeholder="Nome"
+                                         styleClass="form-control"
+                                         value="#{demandaControl.demanda.nome}"
+                                         required="true"
+                                         requiredMessage="O Campo Nome é Obrigatório"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <h:outputLabel value="Descrição *" for="descr" styleClass="col-lg-1 control-label"/>
-                        <div class="col-lg-5">
+                        <h:outputLabel value="Descrição *" for="descr" styleClass="col-md-2 control-label"/>
+                        <div class="col-md-6">
                             <h:inputTextarea id="descr"
                                              rows="3"
                                              styleClass="form-control"
@@ -64,37 +64,31 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <h:outputLabel value="Data de Início da Demanda"
+                        <h:outputLabel value="Data de Início"
                                        for="dataInicio"
-                                       styleClass="col-lg-1 control-label"/>
-                        <div class="input-group col-lg-5">
+                                       styleClass="col-md-2 control-label"/>
+                        <div class="input-group col-md-6">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
                             <h:inputText value="#{demandaControl.demanda.dataInicio}"
                                          id="dataInicio"
-                                         styleClass="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="" >
+                                         styleClass="form-control data-mask datepicker">
                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                             </h:inputText>
                         </div>
                     </div>
                     <div class="box-footer">
                         <h:commandButton value="Salvar"
-                                         styleClass="btn btn-info pull-right"
+                                         styleClass="btn btn-success pull-right"
                                          action="#{demandaControl.salvar}"/>
                     </div>
                 </div>
             </h:form>
 
-            <!-- /.box-body -->
-            <div class="box-footer">
-                Footer
-            </div>
-            <!-- /.box-footer-->
         </div>
-    <h:outputScript>
-        $('#formDemanda:dataInicio').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
-    </h:outputScript>
+    </ui:define>
+    <ui:define name="scripts">
 
     </ui:define>
 </ui:composition>

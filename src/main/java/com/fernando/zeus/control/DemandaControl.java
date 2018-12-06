@@ -3,6 +3,7 @@ package com.fernando.zeus.control;
 import com.fernando.zeus.model.Demanda;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -12,6 +13,7 @@ import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.Serializable;
+import java.util.Map;
 
 @Named
 @ViewScoped
@@ -24,6 +26,13 @@ public class DemandaControl implements Serializable {
 
     @Inject
     private LoginControl loginControl;
+
+    @PostConstruct
+    public void init(){
+        Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String id = params.get("id");
+    }
+
 
     public String salvar(){
         demanda.setCliente(loginControl.getUsuario());

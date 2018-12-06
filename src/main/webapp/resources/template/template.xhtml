@@ -17,6 +17,7 @@
     <h:outputStylesheet name="/jvectormap/jquery-jvectormap.css"/>
     <h:outputStylesheet name="/css/AdminLTE.min.css"/>
     <h:outputStylesheet name="/css/skins/_all-skins.min.css"/>
+    <h:outputStylesheet name="/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"/>
 
 </h:head>
 <h:body styleClass="hold-transition skin-blue sidebar-mini">
@@ -77,48 +78,7 @@
             </nav>
         </header>
         <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar">
-            <!-- sidebar: style can be found in sidebar.less -->
-            <section class="sidebar">
-                <!-- Sidebar user panel -->
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        <h:graphicImage library="img" name="default-user.png" styleClass="img-circle" alt="User Image"/>
-                    </div>
-                    <div class="pull-left info">
-                        <p>#{loginControl.usuario.nome}</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                    </div>
-                </div>
-                <!-- sidebar menu: : style can be found in sidebar.less -->
-                <h:form>
-                    <ul class="sidebar-menu" data-widget="tree">
-                        <li class="header">Menu Principal</li>
-                        <li class="treeview menu-open">
-                            <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>Demandas</span>
-                                <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li>
-                                    <h:commandLink action="/dashboard/demanda/lista?faces-redirect=true">
-                                        <i class="fa fa-circle-o"></i> Lista de Demandas
-                                    </h:commandLink>
-                                </li>
-                                <li>
-                                    <h:commandLink action="/dashboard/demanda/formulario?faces-redirect=true">
-                                        <i class="fa fa-circle-o"></i> Nova Demanda
-                                    </h:commandLink>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </h:form>
-            </section>
-            <!-- /.sidebar -->
-        </aside>
+        <ui:include src="sidebar.xhtml"/>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -153,10 +113,13 @@
     <h:outputScript name="/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"/>
     <h:outputScript name="/jquery-slimscroll/jquery.slimscroll.min.js"/>
     <h:outputScript name="/chart.js/Chart.js"/>
-    <!--<h:outputScript name="/js/pages/dashboard2.js"/>
-    <h:outputScript name="/js/demo.js"/>-->
     <h:outputScript name="/plugins/input-mask/jquery.inputmask.js" />
     <h:outputScript name="/plugins/input-mask/jquery.inputmask.date.extensions.js" />
     <h:outputScript name="/plugins/input-mask/jquery.inputmask.extensions.js" />
+    <h:outputScript name="/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"/>
+    <h:outputScript name="/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js"/>
+    <h:outputScript name="/js/jquery.mask.min.js"/>
+    <h:outputScript name="/js/summer.js"/>
+    <ui:insert name="scripts"/>
 </h:body>
 </html>

@@ -35,6 +35,48 @@ public class DemandaListaControl implements Serializable {
         this.listar();
     }
 
+    /**
+     * @Inject
+     *     private FacesContext facesContext;
+     *
+     * public HttpSession getSessao() {
+     *         return (HttpSession)this.getExternalContext().getSession(true);
+     *     }
+     *     public void setParamSession(String key, Object object) {
+     *         this.getSessao().setAttribute(key, object);
+     *     }
+     *     public void setParamRequest(String nome, Object valor) {
+     *         if (nome.startsWith("@")) {
+     *             this.setParamSession(nome, valor);
+     *         } else {
+     *             this.setParamSession("@" + nome, valor);
+     *         }
+     *
+     *     }
+     */
+
+    /**
+     * public Object getParamRequest(String nome) {
+     *         return nome.startsWith("@") ? this.getParamSession(nome) : this.getParamSession("@" + nome);
+     *     }
+     *     public Object popParamRequest(String nome) {
+     *         Object r = this.getParamRequest(nome);
+     *         this.removeParamRequest(nome);
+     *         return r;
+     *     }
+     *
+     *     public void removeParamRequest(String nome) {
+     *         if (nome.startsWith("@")) {
+     *             this.removeAttribute(nome);
+     *         } else {
+     *             this.removeAttribute("@" + nome);
+     *         }
+     *
+     *     }
+     */
+
+
+
     public String pesquisar() {
         if (demanda.getId() == null
                 && demanda.getNome() == null
