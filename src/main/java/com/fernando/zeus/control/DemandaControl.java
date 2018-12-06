@@ -54,6 +54,10 @@ public class DemandaControl implements Serializable {
         return "lista?faces-redirect=true";
     }
 
+    public String getTituloTela(){
+        return "novo".equals(acao) ? "Nova Demanda" : "Editar Demanda";
+    }
+
     public Demanda getDemanda() {
         return demanda;
     }

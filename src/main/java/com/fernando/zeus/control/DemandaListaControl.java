@@ -61,6 +61,12 @@ public class DemandaListaControl implements Serializable {
         return null;
     }
 
+    public String limparPesquisa(){
+        demanda = new Demanda();
+        this.listar();
+        return null;
+    }
+
     public void listar(){
         WebTarget consultaDemandas = ClientUtil.criaConexao("http://localhost:8080/demandas");
         consultaDemandas = consultaDemandas.path(loginControl.getUsuario().getId().toString());

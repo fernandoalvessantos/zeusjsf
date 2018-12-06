@@ -14,7 +14,6 @@ public class Demanda implements Serializable {
     private Long id;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @NotEmpty(message = "Campo nome não pode ser vazio")
     private String nome;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
