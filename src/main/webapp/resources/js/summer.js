@@ -127,7 +127,7 @@ function autoCloseAlertMessage() {
     if ($("[id*=OUTPUTTEXT_AUTOCLOSEALERTMESSAGE_SUMMER]").length == 1) {
         if (JSON.parse($("[id*=OUTPUTTEXT_AUTOCLOSEALERTMESSAGE_SUMMER]").text())) {
             window.setTimeout(function () {
-                $("#summerMessageContainer .alert").fadeTo(15000, 0).slideUp(500, function () {
+                $("#messageContainer .alert").fadeTo(15000, 0).slideUp(500, function () {
                     $(this).remove();
                 });
             }, 5000);
@@ -137,8 +137,8 @@ function autoCloseAlertMessage() {
 
 function autoScrollToAlertMessage() {
     window.setTimeout(function () {
-        if ($("[id*=panelGroupSummerMessageContainer] #summerMessageContainer .alert").length == 1) {
-            var id = $("[id*=panelGroupSummerMessageContainer]").attr("id");
+        if ($("[id*=panelGroupMessageContainer] #messageContainer .alert").length == 1) {
+            var id = $("[id*=panelGroupMessageContainer]").attr("id");
             window.location.hash = "";
             window.location.hash = id;
         }

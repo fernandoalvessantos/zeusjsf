@@ -8,6 +8,14 @@
     <ui:define name="nomeTela">
         Lista Demandas
     </ui:define>
+    <ui:define name="breadcrumbs">
+        <li>
+            <h:commandLink action="/dashboard/index?faces-redirect=true" >
+                <i class="fa fa-dashboard"></i> Dashboard
+            </h:commandLink>
+        </li>
+        <li class="active">Lista Demandas</li>
+    </ui:define>
     <ui:define name="conteudo">
         <div class="box">
             <div class="box-header with-border">
@@ -94,13 +102,22 @@
                                 </h:outputText>
                             </h:column>
                             <h:column>
-                                <h:commandButton action="/dashboard/demanda/formulario?faces-redirect=true">
-                                    <f:param name="id" value="#{d.id}" />
-                                </h:commandButton>
-                                <h:commandButton value="Deletar"
-                                                 styleClass="btn btn-default"
+                                <h:commandLink styleClass="btn btn-default"
+                                                 alt="Editar"
+                                                 label="Editar"
+                                                 action="#{demandaListaControl.editarDemanda(d.id)}">
+                                    <span class="btn-label">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </span>
+                                </h:commandLink>
+                                <h:commandLink styleClass="btn btn-danger"
                                                  alt="Deletar"
-                                                 action="#{demandaListaControl.deletar(d.id)}"/>
+                                                 label="Deletar"
+                                                 action="#{demandaListaControl.deletar(d.id)}">
+                                    <span class="btn-label">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </span>
+                                </h:commandLink>
                             </h:column>
                         </h:dataTable>
                     </div>

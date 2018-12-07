@@ -2,13 +2,11 @@ package com.fernando.zeus.control;
 
 import com.fernando.zeus.model.Login;
 import com.fernando.zeus.model.Usuario;
+import com.fernando.zeus.utils.MessagesUtil;
 import com.fernando.zeus.ws.ClientUtil;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Entity;
@@ -19,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.ConnectException;
 
 @Named
 @SessionScoped
@@ -40,9 +39,7 @@ public class LoginControl implements Serializable {
             Response response = builder.post(Entity.entity(login, MediaType.APPLICATION_JSON));
             if (response.getStatus() != 200) {
                 if (response.getStatus() == 409) {
-                    FacesContext.getCurrentInstance().addMessage(null,
-                            new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                                    "Usuário e/ou senha inválidos", null));
+                    MessagesUtil.addErrorMessage("Usuário e/ou senha inválidos");
                     return null;
                 }else{
                     throw new Exception();
@@ -50,10 +47,12 @@ public class LoginControl implements Serializable {
             }
 
             usuario = response.readEntity(new GenericType<Usuario>(){});
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Erro ao efetuar Login", null));
+        } catch (ConnectException connexc){
+            MessagesUtil.addErrorMessage("Serviço de login indisponível");
+        }
+
+        catch (Exception e) {
+            MessagesUtil.addErrorMessage("Erro ao efetuar Login!!");
             return null;
         }
 

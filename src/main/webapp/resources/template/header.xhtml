@@ -4,19 +4,20 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
+<ui:component>
+    <header class="main-header">
 
-</h:head>
-<h:body>
-    <ui:component>
-    <header class="main-header"></header>
+        <!-- Logo -->
         <a href="/dashboard/index.xhtml" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>Z</b></span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>Z</b>eus</span>
-            <!-- mini logo for sidebar mini 50x50 pixels -->
         </a>
+
+        <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                 <span class="sr-only">Toggle navigation</span>
             </a>
@@ -26,25 +27,28 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <h:graphicImage library="img" name="default-user.png" styleClass="user-image" alt="User Image" />
+                            <h:graphicImage name="/img/default-user.png"
+                                            styleClass="user-image"
+                                            alt="User Image"/>
                             <span class="hidden-xs">#{loginControl.usuario.nome}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <h:graphicImage library="img" name="default-user.png" styleClass="img-circle" alt="User Image" />
+                                <h:graphicImage library="img" name="default-user.png" styleClass="img-circle"
+                                                alt="User Image"/>
 
                                 <p>
                                     #{loginControl.usuario.nome} - #{loginControl.usuario.perfil}
                                 </p>
                             </li>
+
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-right">
-                                    <h:form >
-                                    <h:commandLink value="Sair"
-                                                   action="#{loginControl.logOut}"
-                                                   styleClass="btn btn-default btn-flat"/>
+                                    <h:form>
+                                        <h:commandButton action="#{loginControl.logOut}"
+                                                         value="Sair" styleClass="btn btn-default btn-flat"/>
                                     </h:form>
                                 </div>
                             </li>
@@ -52,7 +56,8 @@
                     </li>
                 </ul>
             </div>
+
         </nav>
-    </ui:component>
-</h:body>
+    </header>
+</ui:component>
 </html>

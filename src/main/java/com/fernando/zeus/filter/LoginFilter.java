@@ -22,7 +22,9 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        if(loginControl == null || loginControl.getUsuario() == null){
+        if(loginControl != null && loginControl.getUsuario() != null){
+            filterChain.doFilter(servletRequest, servletResponse);
+        }else{
             String contextPath = ((HttpServletRequest) servletRequest)
                     .getContextPath();
             //Redirecionamos o usuário imediatamente
@@ -30,9 +32,6 @@ public class LoginFilter implements Filter {
             ((HttpServletResponse) servletResponse).sendRedirect
                     (contextPath + "/login.xhtml");
         }
-
-        filterChain.doFilter(servletRequest, servletResponse);
-
     }
 
     @Override

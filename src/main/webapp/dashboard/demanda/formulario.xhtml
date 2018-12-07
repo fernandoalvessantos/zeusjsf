@@ -8,6 +8,19 @@
     <ui:define name="nomeTela">
         #{demandaControl.tituloTela}
     </ui:define>
+    <ui:define name="breadcrumbs">
+        <li>
+            <h:commandLink action="/dashboard/index?faces-redirect=true" >
+                <i class="fa fa-dashboard"></i> Dashboard
+            </h:commandLink>
+        </li>
+        <li>
+            <h:commandLink action="/dashboard/demanda/lista?faces-redirect=true" >
+                <i class="fa fa-list"></i> Lista Demandas
+            </h:commandLink>
+        </li>
+        <li class="active">Demanda</li>
+    </ui:define>
     <ui:define name="conteudo">
         <div class="box">
             <div class="box-header with-border">
@@ -24,11 +37,6 @@
 
             <h:form id="formDemanda" styleClass="form-horizontal">
                 <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h:messages/>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <h:outputLabel value="Código" for="codigo" styleClass="col-md-2 control-label"/>
                         <div class="col-md-6">
@@ -79,6 +87,10 @@
                         </div>
                     </div>
                     <div class="box-footer">
+                        <h:commandButton value="Voltar"
+                                         styleClass="btn btn-default"
+                                         immediate="true"
+                                         action="/dashboard/demanda/lista?faces-redirect=true"/>
                         <h:commandButton value="Salvar"
                                          styleClass="btn btn-success pull-right"
                                          action="#{demandaControl.salvar}"/>

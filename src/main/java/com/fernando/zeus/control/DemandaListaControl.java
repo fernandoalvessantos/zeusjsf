@@ -1,6 +1,7 @@
 package com.fernando.zeus.control;
 
 import com.fernando.zeus.model.Demanda;
+import com.fernando.zeus.utils.MessagesUtil;
 import com.fernando.zeus.ws.ClientUtil;
 
 import javax.annotation.PostConstruct;
@@ -20,7 +21,9 @@ import java.util.List;
 
 @Named
 @ViewScoped
-public class DemandaListaControl implements Serializable {
+public class DemandaListaControl extends BasicControl implements Serializable {
+
+    public static final String PARAM_DEMANDA ="idDemanda";
 
     @Inject
     private Demanda demanda;
@@ -34,48 +37,6 @@ public class DemandaListaControl implements Serializable {
     public void init()  {
         this.listar();
     }
-
-    /**
-     * @Inject
-     *     private FacesContext facesContext;
-     *
-     * public HttpSession getSessao() {
-     *         return (HttpSession)this.getExternalContext().getSession(true);
-     *     }
-     *     public void setParamSession(String key, Object object) {
-     *         this.getSessao().setAttribute(key, object);
-     *     }
-     *     public void setParamRequest(String nome, Object valor) {
-     *         if (nome.startsWith("@")) {
-     *             this.setParamSession(nome, valor);
-     *         } else {
-     *             this.setParamSession("@" + nome, valor);
-     *         }
-     *
-     *     }
-     */
-
-    /**
-     * public Object getParamRequest(String nome) {
-     *         return nome.startsWith("@") ? this.getParamSession(nome) : this.getParamSession("@" + nome);
-     *     }
-     *     public Object popParamRequest(String nome) {
-     *         Object r = this.getParamRequest(nome);
-     *         this.removeParamRequest(nome);
-     *         return r;
-     *     }
-     *
-     *     public void removeParamRequest(String nome) {
-     *         if (nome.startsWith("@")) {
-     *             this.removeAttribute(nome);
-     *         } else {
-     *             this.removeAttribute("@" + nome);
-     *         }
-     *
-     *     }
-     */
-
-
 
     public String pesquisar() {
         if (demanda.getId() == null
@@ -115,13 +76,15 @@ public class DemandaListaControl implements Serializable {
         Invocation.Builder builder = consultaDemandas.request(MediaType.APPLICATION_JSON);
         Response response = builder.get();
         if(response.getStatus() != 200){
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Erro",
-                            "Código "+response.getStatus()));
+            MessagesUtil.addErrorMessage("Erro ao listar Demandas Cód. "+response.getStatus());
         }
 
         lista = response.readEntity(new GenericType<List<Demanda>>(){});
+    }
+
+    public String editarDemanda(Long idDemanda){
+        super.setParamRequest(DemandaListaControl.PARAM_DEMANDA, idDemanda);
+        return "/dashboard/demanda/formulario?faces-redirect=true";
     }
 
     public String deletar(Long idDemanda){
@@ -130,10 +93,7 @@ public class DemandaListaControl implements Serializable {
         Invocation.Builder builder = consultaDemandas.request();
         Response response = builder.delete();
         if(response.getStatus() != 204){
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Erro",
-                            "Código "+response.getStatus()));
+            MessagesUtil.addErrorMessage("Erro ao Deletar. Cód. "+response.getStatus());
             return null;
         }
         this.listar();

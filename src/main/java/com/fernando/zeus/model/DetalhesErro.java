@@ -1,4 +1,4 @@
-package com.fernando.zeus.control;
+package com.fernando.zeus.model;
 
 public class DetalhesErro {
 
