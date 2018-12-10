@@ -31,13 +31,27 @@
                         </a>
                         <ul class="treeview-menu">
                             <li>
-                                <h:commandLink action="/dashboard/demanda/lista?faces-redirect=true">
+                                <h:commandLink action="/dashboard/demanda/lista?faces-redirect=true"
+                                               rendered="#{loginControl.cliente}">
                                     <i class="fa fa-circle-o"></i> Lista de Demandas
                                 </h:commandLink>
                             </li>
                             <li>
-                                <h:commandLink action="/dashboard/demanda/formulario?faces-redirect=true">
+                                <h:commandLink action="/dashboard/demanda/formulario?faces-redirect=true"
+                                               rendered="#{loginControl.cliente}">
                                     <i class="fa fa-circle-o"></i> Nova Demanda
+                                </h:commandLink>
+                            </li>
+                            <li>
+                                <h:commandLink action="/dashboard/demanda/listanaorelacionados?faces-redirect=true"
+                                               rendered="#{loginControl.gerente}">
+                                    <i class="fa fa-circle-o"></i> Demandas Não Relacionadas
+                                </h:commandLink>
+                            </li>
+                            <li>
+                                <h:commandLink action="/dashboard/demanda/listaporgerente?faces-redirect=true"
+                                               rendered="#{loginControl.gerente}">
+                                    <i class="fa fa-circle-o"></i> Demandas Gerenciadas
                                 </h:commandLink>
                             </li>
                         </ul>

@@ -10,12 +10,12 @@
     </ui:define>
     <ui:define name="breadcrumbs">
         <li>
-            <h:commandLink action="/dashboard/index?faces-redirect=true" >
+            <h:commandLink action="/dashboard/index?faces-redirect=true">
                 <i class="fa fa-dashboard"></i> Dashboard
             </h:commandLink>
         </li>
         <li>
-            <h:commandLink action="/dashboard/demanda/lista?faces-redirect=true" >
+            <h:commandLink action="/dashboard/demanda/lista?faces-redirect=true">
                 <i class="fa fa-list"></i> Lista Demandas
             </h:commandLink>
         </li>
@@ -55,7 +55,8 @@
                                          styleClass="form-control"
                                          value="#{demandaControl.demanda.nome}"
                                          required="true"
-                                         requiredMessage="O Campo Nome é Obrigatório"/>
+                                         requiredMessage="O Campo Nome é Obrigatório"
+                                         readonly="#{loginControl.gerente}"/>
                         </div>
                     </div>
 
@@ -68,7 +69,8 @@
                                              placeholder="Descrição"
                                              value="#{demandaControl.demanda.descricao}"
                                              required="true"
-                                             requiredMessage="O Campo Descrição é obrigatório"/>
+                                             requiredMessage="O Campo Descrição é obrigatório"
+                                             readonly="#{loginControl.gerente}"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -81,7 +83,24 @@
                             </div>
                             <h:inputText value="#{demandaControl.demanda.dataInicio}"
                                          id="dataInicio"
-                                         styleClass="form-control data-mask datepicker">
+                                         styleClass="form-control data-mask datepicker"
+                                         readonly="#{loginControl.cliente}">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:inputText>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel value="Data Previsão Fim"
+                                       for="dataFim"
+                                       styleClass="col-md-2 control-label"/>
+                        <div class="input-group col-md-6">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <h:inputText value="#{demandaControl.demanda.dataFimPrevisão}"
+                                         id="dataFim"
+                                         styleClass="form-control data-mask datepicker"
+                                         readonly="#{loginControl.cliente}">
                                 <f:convertDateTime pattern="dd/MM/yyyy"/>
                             </h:inputText>
                         </div>

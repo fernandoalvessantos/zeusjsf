@@ -3,20 +3,26 @@ package com.fernando.zeus.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.io.Serializable;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 
-public class Usuario implements Serializable {
+public class Usuario {
+
 
     private Long id;
 
+    @NotEmpty(message = "O Campo nome é obrigatório")
     private String nome;
 
-    private String senha;
-
+    @NotEmpty(message = "O Campo email é obrigatório")
     private String email;
 
+    @NotEmpty(message = "O Campo senha é obrigatório")
+    private String senha;
+
+    @NotNull(message = "O Campo perfil é obrigatório")
     @JsonProperty("perfilAcesso")
     private String perfil;
 

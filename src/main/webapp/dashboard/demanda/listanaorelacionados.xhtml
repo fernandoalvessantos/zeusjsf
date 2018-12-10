@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="/resources/template/template.xhtml">
     <ui:define name="nomeTela">
-        Lista Demandas
+        Lista Não Gerenciadas
     </ui:define>
     <ui:define name="breadcrumbs">
         <li>
@@ -14,12 +14,12 @@
                 <i class="fa fa-dashboard"></i> Dashboard
             </h:commandLink>
         </li>
-        <li class="active">Lista Demandas</li>
+        <li class="active">Lista Não Gerenciadas</li>
     </ui:define>
     <ui:define name="conteudo">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Lista Demandas</h3>
+                <h3 class="box-title">Lista Não Gerenciadas</h3>
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                             title="Collapse">
@@ -34,41 +34,50 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <h:outputLabel value="Código" for="cdDemanda"/>
+                                <h:outputLabel value="Código Demanda" for="cdDemanda"/>
                                 <h:inputText id="cdDemanda"
                                              styleClass="form-control"
                                              placeholder="Código"
-                                             value="#{demandaListaControl.demanda.id}"/>
+                                             value="#{demandaNaoRelacionadaControl.demandaGerente.idDemanda}"/>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <h:outputLabel value="Nome" for="nmDemanda"/>
+                                <h:outputLabel value="Título Demanda" for="nmDemanda"/>
                                 <h:inputText id="nmDemanda"
                                              styleClass="form-control"
                                              placeholder="Nome"
-                                             value="#{demandaListaControl.demanda.nome}"/>
+                                             value="#{demandaNaoRelacionadaControl.demandaGerente.nome}"/>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h:outputLabel value="Nome Cliente" for="nomeCliente"/>
+                                <h:inputText id="nomeCliente"
+                                             styleClass="form-control"
+                                             placeholder="Nome Cliente"
+                                             value="#{demandaNaoRelacionadaControl.demandaGerente.nomeCliente}"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h:outputLabel value="Descrição" for="descDemanda"/>
                                 <h:inputText id="descDemanda"
                                              styleClass="form-control"
                                              placeholder="Descrição"
-                                             value="#{demandaListaControl.demanda.descricao}"/>
+                                             value="#{demandaNaoRelacionadaControl.demandaGerente.descricao}"/>
                             </div>
                         </div>
                     </div>
                     <div class="box-footer">
                         <h:commandButton value="Limpar Pesquisa"
                                          styleClass="btn btn-primary"
-                                         action="#{demandaListaControl.limparPesquisa}"/>
+                                         action="#{demandaNaoRelacionadaControl.limparPesquisa}"/>
                         <h:commandButton value="Pesquisar"
                                          styleClass="btn btn-primary"
-                                         action="#{demandaListaControl.pesquisar}"/>
+                                         action="#{demandaNaoRelacionadaControl.pesquisar}"/>
 
                     </div>
                 </h:form>
@@ -84,7 +93,7 @@
                     </div>
                     <div class="table-responsive no-padding">
                         <h:dataTable id="tableDemandas"
-                                     value="#{demandaListaControl.lista}"
+                                     value="#{demandaNaoRelacionadaControl.lista}"
                                      var="d"
                                      styleClass="table table-hover">
                             <h:column>
@@ -102,36 +111,16 @@
                                 </h:outputText>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Data Início</f:facet>
-                                <h:outputText value="#{d.dataInicio}">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                </h:outputText>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Data Previsão Fim</f:facet>
-                                <h:outputText value="#{d.dataFimPrevisão}">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                </h:outputText>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Gerente</f:facet>
-                                <h:outputText value="#{d.gerente.nome}"/>
+                                <f:facet name="header">Cliente</f:facet>
+                                <h:outputText value="#{d.cliente.nome}"/>
                             </h:column>
                             <h:column>
                                 <h:commandLink styleClass="btn btn-default"
-                                                 alt="Editar"
-                                                 label="Editar"
-                                                 action="#{demandaListaControl.editarDemanda(d.id)}">
+                                               alt="Relacionar"
+                                               label="Relacionar"
+                                               action="#{demandaNaoRelacionadaControl.relacionarDemanda(d.id)}">
                                     <span class="btn-label">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                    </span>
-                                </h:commandLink>
-                                <h:commandLink styleClass="btn btn-danger"
-                                                 alt="Deletar"
-                                                 label="Deletar"
-                                                 action="#{demandaListaControl.deletar(d.id)}">
-                                    <span class="btn-label">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                        <i class="fa fa-file" aria-hidden="true"></i>
                                     </span>
                                 </h:commandLink>
                             </h:column>

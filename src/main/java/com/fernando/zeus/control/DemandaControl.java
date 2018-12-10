@@ -3,15 +3,14 @@ package com.fernando.zeus.control;
 import com.fernando.zeus.model.Demanda;
 import com.fernando.zeus.utils.MessagesUtil;
 import com.fernando.zeus.ws.ClientUtil;
-import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.ws.rs.client.*;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.Serializable;
@@ -41,8 +40,8 @@ public class DemandaControl extends BasicControl implements Serializable {
     }
 
     public void buscaDemanda(Long id){
-        WebTarget buscaDemandaTarget = ClientUtil.criaConexao("http://localhost:8080/demandas");
-        buscaDemandaTarget = buscaDemandaTarget.path(loginControl.getUsuario().getId().toString()).path(id.toString());
+        WebTarget buscaDemandaTarget = ClientUtil.criaConexao("http://localhost:8080/demandas/busca");
+        buscaDemandaTarget = buscaDemandaTarget.path(id.toString());
         Invocation.Builder builder = buscaDemandaTarget.request();
         Response response = builder.get();
         if(response.getStatus() != 200){
@@ -76,7 +75,7 @@ public class DemandaControl extends BasicControl implements Serializable {
         }else{
             try {
                 WebTarget targetAtualiza = ClientUtil.criaConexao("http://localhost:8080/demandas");
-                targetAtualiza.path(demanda.getId().toString());
+                targetAtualiza = targetAtualiza.path(demanda.getId().toString());
                 Invocation.Builder builder = targetAtualiza.request(MediaType.APPLICATION_JSON);
                 Response response = builder.put(Entity.entity(demanda, MediaType.APPLICATION_JSON));
                 if (response.getStatus() != 204) {
@@ -88,7 +87,12 @@ public class DemandaControl extends BasicControl implements Serializable {
                 return null;
             }
             MessagesUtil.addInfoMessage("Demanda salva com sucesso");
-            return "lista?faces-redirect=true";
+            if(loginControl.isCliente()) {
+                return "lista?faces-redirect=true";
+            }else{
+                return "listaporgerente?faces-redirect=true";
+            }
+
         }
     }
 

@@ -64,6 +64,20 @@ public class LoginControl implements Serializable {
         return "/login?faces-redirect=true";
     }
 
+    public boolean isCliente(){
+        if(usuario != null){
+            return "CLIENTE".equalsIgnoreCase(usuario.getPerfil());
+        }
+        return false;
+    }
+
+    public boolean isGerente(){
+        if(usuario != null){
+            return "GERENTE".equalsIgnoreCase(usuario.getPerfil());
+        }
+        return false;
+    }
+
     public Login getLogin() {
         return login;
     }

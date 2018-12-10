@@ -14,6 +14,7 @@ public class Demanda implements Serializable {
     private Long id;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @NotEmpty(message = "Campo nome não pode ser vazio")
     private String nome;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -33,6 +34,9 @@ public class Demanda implements Serializable {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Usuario cliente;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Usuario gerente;
 
     public Demanda(String nome) {
         this.nome = nome;
@@ -94,5 +98,13 @@ public class Demanda implements Serializable {
 
     public void setCliente(Usuario cliente) {
         this.cliente = cliente;
+    }
+
+    public Usuario getGerente() {
+        return gerente;
+    }
+
+    public void setGerente(Usuario gerente) {
+        this.gerente = gerente;
     }
 }
