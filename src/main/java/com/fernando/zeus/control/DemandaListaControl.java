@@ -1,6 +1,7 @@
 package com.fernando.zeus.control;
 
 import com.fernando.zeus.model.Demanda;
+import com.fernando.zeus.utils.DemandaUtil;
 import com.fernando.zeus.utils.MessagesUtil;
 import com.fernando.zeus.ws.ClientUtil;
 
@@ -100,6 +101,9 @@ public class DemandaListaControl extends BasicControl implements Serializable {
         return null;
     }
 
+    public String getDescricaoSit(Integer sit){
+        return DemandaUtil.getDescricaoSituacao(sit);
+    }
 
     public Demanda getDemanda() {
         return demanda;

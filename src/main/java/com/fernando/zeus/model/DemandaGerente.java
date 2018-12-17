@@ -9,6 +9,7 @@ public class DemandaGerente implements Serializable {
     private String nome;
     private String descricao;
     private String nomeCliente;
+    private Integer situacao;
 
     public Long getIdDemanda() {
         return idDemanda;
@@ -48,5 +49,13 @@ public class DemandaGerente implements Serializable {
 
     public void setNomeCliente(String nomeCliente) {
         this.nomeCliente = nomeCliente;
+    }
+
+    public Integer getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(Integer situacao) {
+        this.situacao = situacao;
     }
 }

@@ -74,6 +74,23 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <h:outputLabel value="Situação *" for="situacaoDemanda" styleClass="col-md-2 control-label"/>
+                        <div class="col-md-6">
+                            <h:selectOneMenu id="situacaoDemanda"
+                                             styleClass="form-control"
+                                             placeholder="Situação"
+                                             value="#{demandaControl.demanda.situacao}"
+                                             readonly="#{loginControl.cliente || demandaControl.novo}">
+                                <f:selectItem itemValue="1" itemLabel="Novo"/>
+                                <f:selectItem itemValue="2" itemLabel="Em Planejamento"/>
+                                <f:selectItem itemValue="3" itemLabel="Em Execução"/>
+                                <f:selectItem itemValue="4" itemLabel="Em Homologação"/>
+                                <f:selectItem itemValue="5" itemLabel="Entregue"/>
+                                <f:selectItem itemValue="6" itemLabel="Cancelado"/>
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <h:outputLabel value="Data de Início"
                                        for="dataInicio"
                                        styleClass="col-md-2 control-label"/>

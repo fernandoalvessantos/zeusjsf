@@ -36,6 +36,7 @@ public class DemandaControl extends BasicControl implements Serializable {
             this.buscaDemanda(id);
         }else{
             novo = true;
+            demanda.setSituacao(1);
         }
     }
 

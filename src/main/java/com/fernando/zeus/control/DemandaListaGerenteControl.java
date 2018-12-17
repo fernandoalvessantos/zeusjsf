@@ -3,6 +3,7 @@ package com.fernando.zeus.control;
 import com.fernando.zeus.model.Demanda;
 import com.fernando.zeus.model.DemandaGerente;
 import com.fernando.zeus.model.Usuario;
+import com.fernando.zeus.utils.DemandaUtil;
 import com.fernando.zeus.utils.MessagesUtil;
 import com.fernando.zeus.ws.ClientUtil;
 
@@ -88,6 +89,10 @@ public class DemandaListaGerenteControl extends BasicControl implements Serializ
     public String editarDemanda(Long idDemanda){
         super.setParamRequest(DemandaListaControl.PARAM_DEMANDA, idDemanda);
         return "/dashboard/demanda/formulario?faces-redirect=true";
+    }
+
+    public String getDescricaoSit(Integer sit){
+        return DemandaUtil.getDescricaoSituacao(sit);
     }
 
     public List<Usuario> getListaUsuarios() {

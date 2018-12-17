@@ -52,7 +52,24 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h:outputLabel value="Situação" for="situacaoDemanda"/>
+                                <h:selectOneMenu id="situacaoDemanda"
+                                             styleClass="form-control"
+                                             placeholder="Situação"
+                                             value="#{demandaListaControl.demanda.situacao}">
+                                    <f:selectItem itemValue="#{null}" itemLabel="" />
+                                    <f:selectItem itemValue="1" itemLabel="Novo" />
+                                    <f:selectItem itemValue="2" itemLabel="Em Planejamento" />
+                                    <f:selectItem itemValue="3" itemLabel="Em Execução" />
+                                    <f:selectItem itemValue="4" itemLabel="Em Homologação" />
+                                    <f:selectItem itemValue="5" itemLabel="Entregue" />
+                                    <f:selectItem itemValue="6" itemLabel="Cancelado" />
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <h:outputLabel value="Descrição" for="descDemanda"/>
                                 <h:inputText id="descDemanda"
@@ -94,6 +111,10 @@
                             <h:column>
                                 <f:facet name="header">Nome</f:facet>
                                 <h:outputText value="#{d.nome}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Situação</f:facet>
+                                <h:outputText value="#{demandaListaControl.getDescricaoSit(d.situacao)}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Data Cadastro</f:facet>
