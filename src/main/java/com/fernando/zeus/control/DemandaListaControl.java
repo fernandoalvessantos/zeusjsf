@@ -94,7 +94,7 @@ public class DemandaListaControl extends BasicControl implements Serializable {
         Invocation.Builder builder = consultaDemandas.request();
         Response response = builder.delete();
         if(response.getStatus() != 204){
-            MessagesUtil.addErrorMessage("Erro ao Deletar. Cód. "+response.getStatus());
+            MessagesUtil.addErrorMessage("Erro ao Cancelar. Cód. "+response.getStatus());
             return null;
         }
         this.listar();
