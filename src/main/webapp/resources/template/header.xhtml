@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:component>
-    <header class="main-header">
+    <header class="main-header" aria-label="Cabeçalho" role="banner">
 
         <!-- Logo -->
         <a href="/dashboard/index.xhtml" class="logo">
@@ -16,9 +16,9 @@
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top">
+        <nav class="navbar navbar-static-top" role="navigation">
             <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" aria-haspopup="true">
                 <span class="sr-only">Toggle navigation</span>
             </a>
             <!-- Navbar Right Menu -->
@@ -29,14 +29,14 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <h:graphicImage name="/img/default-user.png"
                                             styleClass="user-image"
-                                            alt="User Image"/>
+                                            alt="Imagem do Usuário"/>
                             <span class="hidden-xs">#{loginControl.usuario.nome}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <h:graphicImage library="img" name="default-user.png" styleClass="img-circle"
-                                                alt="User Image"/>
+                                                alt="Imagem do Usuário"/>
 
                                 <p>
                                     #{loginControl.usuario.nome} - #{loginControl.usuario.perfil}
@@ -48,7 +48,9 @@
                                 <div class="pull-right">
                                     <h:form>
                                         <h:commandButton action="#{loginControl.logOut}"
-                                                         value="Sair" styleClass="btn btn-default btn-flat"/>
+                                                         value="Sair" styleClass="btn btn-default btn-flat"
+                                                         alt="Botão Sair"
+                                                         role="button"/>
                                     </h:form>
                                 </div>
                             </li>

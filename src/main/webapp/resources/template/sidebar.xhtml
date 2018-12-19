@@ -5,13 +5,13 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:component>
-    <aside class="main-sidebar">
+    <aside class="main-sidebar" role="region">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <h:graphicImage library="img" name="default-user.png" styleClass="img-circle" alt="User Image"/>
+                    <h:graphicImage library="img" name="default-user.png" styleClass="img-circle" alt="Imagem do Usuário"/>
                 </div>
                 <div class="pull-left info">
                     <p>#{loginControl.usuario.nome}</p>
@@ -20,37 +20,37 @@
             </div>
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <h:form>
-                <ul class="sidebar-menu" data-widget="tree">
+                <ul class="sidebar-menu" data-widget="tree" role="menubar">
                     <li class="header">Menu Principal</li>
-                    <li class="treeview menu">
-                        <a href="#">
+                    <li class="treeview menu" role="none">
+                        <a href="#" role="menuitem">
                             <i class="fa fa-dashboard"></i> <span>Demandas</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
-                        <ul class="treeview-menu">
-                            <li>
+                        <ul class="treeview-menu" role="menubar">
+                            <li role="none">
                                 <h:commandLink action="/dashboard/demanda/lista?faces-redirect=true"
-                                               rendered="#{loginControl.cliente}">
+                                               rendered="#{loginControl.cliente}" role="menuitem" >
                                     <i class="fa fa-circle-o"></i> Lista de Demandas
                                 </h:commandLink>
                             </li>
-                            <li>
+                            <li role="none">
                                 <h:commandLink action="/dashboard/demanda/formulario?faces-redirect=true"
-                                               rendered="#{loginControl.cliente}">
+                                               rendered="#{loginControl.cliente}" role="menuitem">
                                     <i class="fa fa-circle-o"></i> Nova Demanda
                                 </h:commandLink>
                             </li>
-                            <li>
+                            <li role="none">
                                 <h:commandLink action="/dashboard/demanda/listanaorelacionados?faces-redirect=true"
-                                               rendered="#{loginControl.gerente}">
+                                               rendered="#{loginControl.gerente}" role="menuitem">
                                     <i class="fa fa-circle-o"></i> Demandas Não Relacionadas
                                 </h:commandLink>
                             </li>
-                            <li>
+                            <li role="none">
                                 <h:commandLink action="/dashboard/demanda/listaporgerente?faces-redirect=true"
-                                               rendered="#{loginControl.gerente}">
+                                               rendered="#{loginControl.gerente}" role="menuitem">
                                     <i class="fa fa-circle-o"></i> Demandas Gerenciadas
                                 </h:commandLink>
                             </li>

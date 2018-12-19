@@ -32,15 +32,15 @@
         <div class="content-wrapper">
             <ui:include src="messages.xhtml"/>
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1><ui:insert name="nomeTela"/></h1>
+            <section class="content-header" aria-describedby="h1header">
+                <h1 id="h1header"><ui:insert name="nomeTela"/></h1>
                 <ol class="breadcrumb">
                     <ui:insert name="breadcrumbs"/>
                 </ol>
             </section>
 
             <!-- Main content -->
-            <section class="content">
+            <section class="content" role="main">
 
                 <ui:insert name="conteudo"/>
             </section>
